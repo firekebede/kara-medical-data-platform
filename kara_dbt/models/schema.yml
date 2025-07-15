@@ -1,0 +1,25 @@
+# models/schema.yml
+version: 2
+
+models:
+  - name: stg_telegram_messages
+    description: "Staging model for Telegram messages"
+    columns:
+      - name: id
+        tests: [unique, not_null]
+      - name: message
+        tests: [not_null]
+
+  - name: dim_channels
+    description: "Dimension table for Telegram channels"
+    columns:
+      - name: channel_name
+        tests: [not_null]
+
+  - name: fct_messages
+    description: "Fact table of individual Telegram messages"
+    columns:
+      - name: id
+        tests: [unique, not_null]
+      - name: message_length
+        description: "Length of the Telegram message"
